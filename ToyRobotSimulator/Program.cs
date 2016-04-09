@@ -96,13 +96,13 @@ namespace ToyRobotSimulator
 		{
 			if (direction.Equals("EAST"))
 			{
-				return x += 1;
+				return x + 1;
 			}
 			else 
 			{
 				if (direction.Equals("WEST")) 
 				{
-					return x -= 1;
+					return x - 1;
 				}
 			}
 			return x;
@@ -112,13 +112,13 @@ namespace ToyRobotSimulator
 		{
 			if (direction.Equals("NORTH"))
 			{
-				return y += 1;
+				return y + 1;
 			}
 			else
 			{
 				if (direction.Equals("SOUTH"))
 				{
-					return y -= 1;
+					return y - 1;
 				}
 			}
 			return y;
@@ -128,7 +128,7 @@ namespace ToyRobotSimulator
 
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Hello There! Lets Play");
+			Console.WriteLine ("Hello There! Lets Play! To Quit enter exit or quit");
 //			Console.WriteLine ("Hello Selemon!");
 			MainClass robot = new MainClass();
 
