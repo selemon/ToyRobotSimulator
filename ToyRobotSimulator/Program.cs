@@ -9,18 +9,19 @@ namespace ToyRobotSimulator
 		private int y = -1;
 		private string direction;
 
-		public MainClass()
+		public MainClass ()
 		{
 			
 		}
 
 
-		public void command(string command){
+		public void command (string command)
+		{
 
 //			Console.WriteLine ("in command");
 
-			if(command.StartsWith("PLACE")){
-				string[] tokens = command.Split(' ');
+			if (command.StartsWith ("PLACE")) {
+				string[] tokens = command.Split (' ');
 				if (tokens.Length < 2) {
 					Console.WriteLine ("Please provide correct PLACE statement");
 				} else {
@@ -40,17 +41,21 @@ namespace ToyRobotSimulator
 						}
 					}
 				}
-			}else if(command.StartsWith("MOVE")){
+			} else if (command.StartsWith ("MOVE")) {
 				if (x < 0 || y < 0 || x >= TABLE_SIZE || y >= TABLE_SIZE) {
 					Console.WriteLine ("Robot cant move here");
 				} else {
 
 					int newx = GetXDestination ();
 					int newy = GetYDestination ();
-					x = newx;
-					y = newy;
+					if (newx < 0 || newy < 0 || newx >= TABLE_SIZE || newy >= TABLE_SIZE) {
+						Console.WriteLine ("Robot cant move here");
+					} else {
+						x = newx;
+						y = newy;
+					}
 				}
-			}else if(command.StartsWith("LEFT")){
+			} else if (command.StartsWith ("LEFT")) {
 				if (x < 0 || y < 0 || x >= TABLE_SIZE || y >= TABLE_SIZE) {
 					Console.WriteLine ("Robot is not on the table");
 				} else {
@@ -66,7 +71,7 @@ namespace ToyRobotSimulator
 				}
 
 
-			}else if(command.StartsWith("RIGHT")){
+			} else if (command.StartsWith ("RIGHT")) {
 				if (x < 0 || y < 0 || x >= TABLE_SIZE || y >= TABLE_SIZE) {
 					Console.WriteLine ("Robot is not on the table");
 				} else {
@@ -81,7 +86,7 @@ namespace ToyRobotSimulator
 					}
 				}
 
-			}else if(command.StartsWith("REPORT")){
+			} else if (command.StartsWith ("REPORT")) {
 				if (x < 0 || y < 0 || x >= TABLE_SIZE || y >= TABLE_SIZE) {
 					Console.WriteLine ("Robot is not on the table");
 				} else {
@@ -92,35 +97,25 @@ namespace ToyRobotSimulator
 
 		}
 
-		private int GetXDestination()
+		private int GetXDestination ()
 		{
-			if (direction.Equals("EAST"))
-			{
+			if (direction.Equals ("EAST")) {
 				return x + 1;
+			} else if (direction.Equals ("WEST")) {
+				return x - 1;
 			}
-			else 
-			{
-				if (direction.Equals("WEST")) 
-				{
-					return x - 1;
-				}
-			}
+			
 			return x;
 		}
 
-		private int GetYDestination()
+		private int GetYDestination ()
 		{
-			if (direction.Equals("NORTH"))
-			{
+			if (direction.Equals ("NORTH")) {
 				return y + 1;
+			} else if (direction.Equals ("SOUTH")) {
+				return y - 1;
 			}
-			else
-			{
-				if (direction.Equals("SOUTH"))
-				{
-					return y - 1;
-				}
-			}
+
 			return y;
 		}
 
@@ -130,19 +125,17 @@ namespace ToyRobotSimulator
 		{
 			Console.WriteLine ("Hello There! Lets Play! To Quit enter exit or quit");
 //			Console.WriteLine ("Hello Selemon!");
-			MainClass robot = new MainClass();
+			MainClass robot = new MainClass ();
 
 
-			while (true)
-			{
-				Console.WriteLine("#: ");
-				string command = Console.ReadLine();
+			while (true) {
+				Console.WriteLine ("#: ");
+				string command = Console.ReadLine ();
 //				Console.WriteLine ("user said: " + command);
-				if (command.ToUpper() == "EXIT" || command.ToUpper() == "QUIT")
-				{
-					Environment.Exit(0);
+				if (command.ToUpper () == "EXIT" || command.ToUpper () == "QUIT") {
+					Environment.Exit (0);
 				}
-				robot.command(command.ToUpper());
+				robot.command (command.ToUpper ());
 			}
 
 
